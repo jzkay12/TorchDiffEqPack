@@ -68,17 +68,15 @@ out = odesolve(func, y0, options = options)
 </code></pre>
 
 <ul class="simple">
-<li><p>from TorchDiffEqPack import odesolve</p></li>
-<li><p>options = {}</p></li>
-<li><p>options.update({‘method’:method}) : string, ‘method’ must be in [‘euler’,’rk2’,’rk12’,’rk23’,’dopri5’, ‘ode23s’], ‘ode23s’ for stiff ODEs</p></li>
-<li><p>options.update({‘h’: h}) : float, initial stepsize for integration. Must be specified for fixed stepsize solvers; for adaptive solvers, can be set as None, then the solver witll automatically determine the initial stepsize</p></li>
-<li><p>options.update({‘t0’: t0}) : float, initial time for integration</p></li>
-<li><p>options.update({‘t1’: t1}) : float, end time for integration</p></li>
-<li><p>options.update({‘rtol’: rtol}) : float or list of floats (must be same length as y0), relative tolerance for integration, typically set as 1e-5 or 1e-6 for dopri5</p></li>
-<li><p>options.update({‘atol’: atol}) : float or list of floats (must be same length as y0), absolute tolerance for integration, typically set as 1e-6 or 1e-7 for dopri5</p></li>
-<li><p>options.update({‘print_neval’: print_neval}) : bool, when print number of function evaluations, recommended to set as False</p></li>
-<li><p>options.update({‘neval_max’: neval_max}) : int, maximum number of evaluations when encountering stiff problems, typically set as 5e5</p></li>
-<li><p>options.update({‘t_eval’: [t0, t0 + (t1-t0)/10, …  ,t1]}) : Evaluation time points, a list of float; if is None, only output the value at time t1</p></li>
+<li><p>'method': string, must be in [‘euler’,’rk2’,’rk12’,’rk23’,’dopri5’, ‘ode23s’], ‘ode23s’ for stiff ODEs</p></li>
+<li><p>'h': float, initial stepsize for integration. Must be specified for fixed stepsize solvers; for adaptive solvers, can be set as None, then the solver witll automatically determine the initial stepsize</p></li>
+<li><p>'t0' : float, initial time for integration</p></li>
+<li><p>'t1': float, end time for integration</p></li>
+<li><p>'rtol': float or list of floats (must be same length as y0), relative tolerance for integration, typically set as 1e-5 or 1e-6 for dopri5</p></li>
+<li><p>'atol': float or list of floats (must be same length as y0), absolute tolerance for integration, typically set as 1e-6 or 1e-7 for dopri5</p></li>
+<li><p>'print_neval': bool, when print number of function evaluations, recommended to set as False</p></li>
+<li><p>'neval_max' : int, maximum number of evaluations when encountering stiff problems, typically set as 5e5</p></li>
+<li><p>'t_eval': Evaluation time points, a list of float; if is None, only output the value at time t1</p></li>
 <li><p>out = odesolve(func, y0, options = options) : func is the ODE; y0 is the initial condition, could be either a tensor or a tuple of tensors</p></li>
 </ul>
 </dd></dl>
