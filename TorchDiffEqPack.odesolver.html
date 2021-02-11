@@ -43,6 +43,9 @@
 
 <p> General differentiable ODE solvers without too much memory consideration. Compared with the "odeint" in "torchdiffeq" package, "odesolve" deletes
  the adjustment of stepsize from back-propagation computation graph, instead it records all accepted steps. </p>
+
+<p> Limitations: the memory cost is still increasing with integration time. Please use "odesolve_adjoint" or "odesolve_adjoint_sym12" to save memory</p>
+  
   
 <p>How to use:</p>
 <ul class="simple">
