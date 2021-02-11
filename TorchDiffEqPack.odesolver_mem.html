@@ -66,11 +66,10 @@ options.update({'neval_max': 1000000})
 options.update({'t_eval':None})
 options.update({'interpolation_method':'cubic'})
 options.update({'regenerate_graph':False})
-out = odesolve(func, y0, options = options) 
 out = odesolve_adjoint(func, y0, options = options)
 </code></pre>
   
-<p>How to use:</p>
+<p>Arguments:</p>
 <ul class="simple">
 <li><p>‘t_eval’: Must be None, only output the value at time t1</p></li>
 <li><p>Other parameters are the same in "odesolve"</p></li>
@@ -112,11 +111,10 @@ options.update({'neval_max': 1000000})
 options.update({'t_eval':None})
 options.update({'interpolation_method':'cubic'})
 options.update({'regenerate_graph':False})
-out = odesolve(func, y0, options = options) 
 out = odesolve_adjoint_sym12(func, y0, options = options)
 </code></pre>
 
-<p>How to use:</p>
+<p>Arguments:</p>
 <ul class="simple">
 <li><p>‘t_eval’: Must be None, the output is the value at time t1</p></li>
 <li><p>Other parameters are the same in "odesolve"</p></li>
