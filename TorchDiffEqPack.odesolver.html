@@ -40,10 +40,13 @@
 <dt id="TorchDiffEqPack.odesolver.ode_solver.odesolve">
 <code class="sig-prename descclassname">TorchDiffEqPack.odesolver.ode_solver.</code><code class="sig-name descname">odesolve</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">y0</em>, <em class="sig-param">options</em>, <em class="sig-param">return_solver=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#TorchDiffEqPack.odesolver.ode_solver.odesolve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation of ICML 2020 paper “Adaptive checkpoint adjoint method for accurate gradient esitmation in Neural ODEs”</p>
+
+<p> General differentiable ODE solvers without too much memory consideration. Compared with the "odeint" in "torchdiffeq" package, "odesolve" deletes
+ the adjustment of stepsize from back-propagation computation graph, instead it records all accepted steps. </p>
+  
 <p>How to use:</p>
 <ul class="simple">
 <li><p>from TorchDiffEqPack import odesolve</p></li>
-<li><p>from TorchDiffEqPack import odesolve_adjoint</p></li>
 <li><p>options = {}</p></li>
 <li><p>options.update({‘method’:method}) : string, ‘method’ must be in [‘euler’,’rk2’,’rk12’,’rk23’,’dopri5’, ‘ode23s’], ‘ode23s’ for stiff ODEs</p></li>
 <li><p>options.update({‘h’: h}) : float, initial stepsize for integration. Must be specified for fixed stepsize solvers; for adaptive solvers, can be set as None, then the solver witll automatically determine the initial stepsize</p></li>
