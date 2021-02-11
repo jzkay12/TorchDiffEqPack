@@ -40,6 +40,17 @@
 <dt id="TorchDiffEqPack.odesolver_mem.adjoint.odesolve_adjoint">
 <code class="sig-prename descclassname">TorchDiffEqPack.odesolver_mem.adjoint.</code><code class="sig-name descname">odesolve_adjoint</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">y0</em>, <em class="sig-param">options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TorchDiffEqPack.odesolver_mem.adjoint.odesolve_adjoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation of ICML 2020 paper “Adaptive checkpoint adjoint method for accurate gradient esitmation in Neural ODEs”</p>
+ 
+<p> "odesolve_adjoint" implements the "Adaptive checkpoint adjoint" (ACA) method. It can be combined with general ODE solver, and guarantees the accuracy of
+  reverse-time trajectory; compared with the "odesolve" method, its memory cost is lower but still slowly increases with integration time.
+</p>
+<p> Limitation:
+  "odesolve_adjoint" only support outputs the end-time value, if you need to output values at multiple points and back-prop, the method "odesolve" is
+  recommended.
+  If you need to output values at t1, t2, ... tn, and your GPU memory is limited, a work-around is to treat [t1,t2], [t2, t3] as separate end-time state
+  problem, and call "odesolve_adjoint" for each chunk.
+</p>  
+  
 <p>How to use:</p>
 <ul class="simple">
 <li><p>from TorchDiffEqPack import odesolve_adjoint</p></li>
@@ -64,6 +75,20 @@
 <dt id="TorchDiffEqPack.odesolver_mem.adjoint_mem.odesolve_adjoint_sym12">
 <code class="sig-prename descclassname">TorchDiffEqPack.odesolver_mem.adjoint_mem.</code><code class="sig-name descname">odesolve_adjoint_sym12</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">y0</em>, <em class="sig-param">options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TorchDiffEqPack.odesolver_mem.adjoint_mem.odesolve_adjoint_sym12" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation of ICLR 2021 paper “MALI: a memory efficient asynchronous leapfrog integrator for Neural ODEs”</p>
+
+
+<p> "odesolve_adjoint_sym12" implements the "MALI" method. It is limited to the asynchronous leapfrog integrator, which is a 2nd-order ODE solver. Its memory
+  cost is constant w.r.t. integration time. Its constant memory cost makes "odesolve_adjoint_sym12" suitable for large-scale systems such as FFJORD, ODE-CNN on 
+  ImageNet.
+</p>
+<p> Limitation:
+  "odesolve_adjoint_sym12" only support outputs the end-time value, if you need to output values at multiple points and back-prop, the method "odesolve" is
+  recommended.
+  If you need to output values at t1, t2, ... tn, and your GPU memory is limited, a work-around is to treat [t1,t2], [t2, t3] as separate end-time state
+  problem, and call "odesolve_adjoint_sym12" for each chunk.
+</p>  
+
+
 <p>How to use:</p>
 <ul class="simple">
 <li><p>from TorchDiffEqPack import odesolve_adjoint_sym12</p></li>
@@ -76,7 +101,7 @@
 <li><p>options.update({‘atol’: atol}) : float or list of floats (must be same length as y0), absolute tolerance for integration, typically set as 1e-3 for MALI</p></li>
 <li><p>options.update({‘print_neval’: print_neval}) : bool, when print number of function evaluations, recommended to set as False</p></li>
 <li><p>options.update({‘neval_max’: neval_max}) : int, maximum number of evaluations when encountering stiff problems, typically set as 5e5</p></li>
-<li><p>options.update({‘t_eval’: [t0, t0 + (t1-t0)/10, …  ,t1]}) : list of float; if is None, then the output is the value at time t1</p></li>
+<li><p>options.update({‘t_eval’: [t0, t0 + (t1-t0)/10, …  ,t1]}) : Must be None, the output is the value at time t1</p></li>
 <li><p>out = odesolve_adjoint_sym12(func, y0, options = options) : func is the ODE; y0 is the initial condition, could be either a tensor or a tuple of tensors</p></li>
 </ul>
 </dd></dl>
