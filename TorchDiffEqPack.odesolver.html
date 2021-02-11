@@ -42,11 +42,8 @@
 <dd><p>Implementation of ICML 2020 paper “Adaptive checkpoint adjoint method for accurate gradient esitmation in Neural ODEs”</p>
 <p>How to use:</p>
 <ul class="simple">
-<<<<<<< HEAD
 <li><p>from TorchDiffEqPack import odesolve</p></li>
-=======
 <li><p>from TorchDiffEqPack import odesolve_adjoint</p></li>
->>>>>>> 0039cf35cc45be165396bce307fb79fd01f491f9
 <li><p>options = {}</p></li>
 <li><p>options.update({‘method’:method}) : string, ‘method’ must be in [‘euler’,’rk2’,’rk12’,’rk23’,’dopri5’, ‘ode23s’], ‘ode23s’ for stiff ODEs</p></li>
 <li><p>options.update({‘h’: h}) : float, initial stepsize for integration. Must be specified for fixed stepsize solvers; for adaptive solvers, can be set as None, then the solver witll automatically determine the initial stepsize</p></li>
