@@ -48,6 +48,25 @@
   
   
 <p>How to use:</p>
+
+```
+# configure training options
+options = {}
+options.update({'method': 'Dopri5'})
+options.update({'h': None})
+options.update({'t0': 0.0})
+options.update({'t1': 1.0})
+options.update({'rtol': 1e-7})
+options.update({'atol': 1e-8})
+options.update({'print_neval': False})
+options.update({'neval_max': 1000000})
+options.update({'safety': None})
+options.update({'t_eval':t_list})
+options.update({'interpolation_method':'cubic'})
+options.update({'regenerate_graph':False})
+out = odesolve(func, y0, options = options) 
+```
+
 <ul class="simple">
 <li><p>from TorchDiffEqPack import odesolve</p></li>
 <li><p>options = {}</p></li>
