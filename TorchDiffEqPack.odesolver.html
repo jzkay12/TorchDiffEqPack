@@ -49,7 +49,7 @@
   
 <p>How to use:</p>
 
-```
+<pre><code>
 # configure training options
 options = {}
 options.update({'method': 'Dopri5'})
@@ -65,7 +65,7 @@ options.update({'t_eval':t_list})
 options.update({'interpolation_method':'cubic'})
 options.update({'regenerate_graph':False})
 out = odesolve(func, y0, options = options) 
-```
+</code></pre>
 
 <ul class="simple">
 <li><p>from TorchDiffEqPack import odesolve</p></li>
